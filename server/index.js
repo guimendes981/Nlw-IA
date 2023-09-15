@@ -1,11 +1,14 @@
 import cors from "cors"
 import express from "express"
 
+import { download } from "./download.js"
+
 const app = express() //criando app express
 app.use(cors()) //habilitando cors
 
-app.get("/summary", (request, response) => {
-  response.send("Hello World! Test")
+app.get("/summary/:id", (request, response) => {
+  download(request.params.id)
+  response.send("Id do vídeo" + request.params.id)
 })
 
 app.listen(3333, () => {
